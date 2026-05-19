@@ -8,13 +8,13 @@ WORKDIR /app
 # Paketleri kopyala ve kur
 COPY package*.json ./
 RUN npm install && \
-    npm install pino pino-pretty axios mongoose @types/mongoose express && \
+    npm install pino pino-pretty axios mongoose @types/mongoose express shoukaku && \
     npm install prisma@5.22.0 @prisma/client@5.22.0 && \
     npm install -g typescript ts-node
 
 COPY . .
 
-# Prisma motorunu oluştur (Klasör yolunu düzelttik!)
+# Prisma motorunu oluştur
 ENV PRISMA_CLIENT_ENGINE_TYPE="binary"
 RUN npx prisma generate --schema=prisma/schema.prisma
 
